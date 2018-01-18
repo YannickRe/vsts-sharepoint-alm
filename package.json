@@ -1,0 +1,45 @@
+{
+  "name": "infront.vsts.sharepointalm",
+  "version": "0.1.0",
+  "description": "SharePoint ALM tasks for VSTS",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "Docs"
+  },
+  "scripts": {
+    "build": "node make.js build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/vsts-tasks"
+  },
+  "keywords": [
+    "VSTS",
+    "build",
+    "tasks",
+    "sharepoint",
+    "alm",
+    "spfx",
+    "app"
+  ],
+  "author": "Yannick Reekmans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Microsoft/vsts-tasks/issues"
+  },
+  "homepage": "https://github.com/Microsoft/vsts-tasks",
+  "devDependencies": {
+    "adm-zip": "0.4.7",
+    "gulp-util": "3.0.4",
+    "minimatch": "3.0.2",
+    "minimist": "1.1.1",
+    "mocha": "2.3.3",
+    "node-uuid": "1.4.6",
+    "q": "1.4.1",
+    "semver": "4.3.3",
+    "shelljs": "^0.3.0",
+    "sync-request": "3.0.1",
+    "typescript": "^2.3.4",
+    "validator": "3.33.0"
+  }
+}

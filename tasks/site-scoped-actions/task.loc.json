@@ -9,7 +9,7 @@
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 4
+    "Patch": 8
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
@@ -26,11 +26,11 @@
       "helpMarkDown": "ms-resource:loc.input.help.spSiteConnection"
     },
     {
-      "name": "Action",
+      "name": "action",
       "type": "pickList",
-      "label": "ms-resource:loc.input.label.Action",
+      "label": "ms-resource:loc.input.label.action",
       "required": false,
-      "helpMarkDown": "ms-resource:loc.input.help.Action",
+      "helpMarkDown": "ms-resource:loc.input.help.action",
       "defaultValue": "Install",
       "options": {
         "Install": "Install Solution Package",

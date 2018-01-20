@@ -9,7 +9,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 4
+        "Patch": 8
     },
     "demands": [],
     "minimumAgentVersion": "1.99.0",
@@ -26,7 +26,7 @@
             "helpMarkDown": "Select the service connection to the SharePoint Site."
         },
         {
-            "name": "Action",
+            "name": "action",
             "type": "pickList",
             "label": "Action",
             "required": false,
@@ -50,7 +50,7 @@
             "helpMarkDown": "Id of the package in the SharePoint Tenant App Catalog."
         }
     ],
-    "instanceNameFormat": "SharePoint ALM: $(Action) Solution Package",
+    "instanceNameFormat": "SharePoint ALM: $(action) Solution Package",
     "execution": {
         "Node": {
             "target": "site-scoped-actions.js",

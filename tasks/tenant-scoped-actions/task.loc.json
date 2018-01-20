@@ -9,7 +9,7 @@
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 4
+    "Patch": 8
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
@@ -26,11 +26,11 @@
       "helpMarkDown": "ms-resource:loc.input.help.appCatalogConnection"
     },
     {
-      "name": "Action",
+      "name": "action",
       "type": "pickList",
-      "label": "ms-resource:loc.input.label.Action",
+      "label": "ms-resource:loc.input.label.action",
       "required": false,
-      "helpMarkDown": "ms-resource:loc.input.help.Action",
+      "helpMarkDown": "ms-resource:loc.input.help.action",
       "defaultValue": "Add",
       "options": {
         "Add": "Add Solution Package",
@@ -49,7 +49,7 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.appFilePath",
-      "visibleRule": "Action = Add"
+      "visibleRule": "action = Add"
     },
     {
       "name": "overwriteExisting",
@@ -61,19 +61,19 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.overwriteExisting",
-      "visibleRule": "Action = Add"
+      "visibleRule": "action = Add"
     },
     {
       "name": "packageIdOut",
       "type": "string",
       "label": "ms-resource:loc.input.label.packageIdOut",
       "defaultValue": "AppPackageId",
-      "required": true,
+      "required": false,
       "properties": {
         "EditableOptions": "True"
       },
       "helpMarkDown": "",
-      "visibleRule": "Action = Add"
+      "visibleRule": "action = Add"
     },
     {
       "name": "packageIdIn",
@@ -85,7 +85,7 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.packageIdIn",
-      "visibleRule": "Action != Add"
+      "visibleRule": "action != Add"
     },
     {
       "name": "skipFeatureDeployment",
@@ -97,7 +97,7 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.skipFeatureDeployment",
-      "visibleRule": "Action = Deploy"
+      "visibleRule": "action = Deploy"
     }
   ],
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",

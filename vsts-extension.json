@@ -33,21 +33,6 @@
             "path": "docs/sharepointalm-README.md"
         }
     },
-    "links": {
-        "getstarted": {
-            "uri": "https://github.com/microsoft/app-store-vsts-extension/"
-        },
-        "support": {
-            "uri": "https://github.com/microsoft/app-store-vsts-extension/issues"
-        },
-        "issues": {
-            "uri": "https://github.com/microsoft/app-store-vsts-extension/issues"    
-        }
-    },
-    "repository": {
-        "type": "git",
-        "uri": "https://github.com/microsoft/app-store-vsts-extension/"
-    },
     "files": [
         {
             "path": "_build/Tasks/SharePointALMTenantScoped"

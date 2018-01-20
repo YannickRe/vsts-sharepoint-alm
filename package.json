@@ -9,10 +9,6 @@
   "scripts": {
     "build": "node make.js build"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vsts-tasks"
-  },
   "keywords": [
     "VSTS",
     "build",
@@ -24,10 +20,6 @@
   ],
   "author": "Yannick Reekmans",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Microsoft/vsts-tasks/issues"
-  },
-  "homepage": "https://github.com/Microsoft/vsts-tasks",
   "devDependencies": {
     "adm-zip": "0.4.7",
     "gulp-util": "3.0.4",

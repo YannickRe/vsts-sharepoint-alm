@@ -5,7 +5,7 @@ import * as tl from 'vsts-task-lib/task';
 tl.setResourcePath(path.join(__dirname, 'task.json'));
 
 async function main(): Promise<void> {
-    console.log("Adding Package to the App Catalog");
+    console.log("Executing action in context of the SharePoint Tenant App Catalog");
 }
 
 main()

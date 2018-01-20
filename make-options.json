@@ -1,6 +1,7 @@
 {
     "tasks": [
-        "add-deploy-solution-package"
+        "tenant-scoped-actions",
+        "site-scoped-actions"
     ],
     "taskResources": [
         "*.ps1",

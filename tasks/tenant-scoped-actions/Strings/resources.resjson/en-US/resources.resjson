@@ -1,9 +1,9 @@
 {
-  "loc.friendlyName": "SharePoint ALM: Add/Deploy Package",
+  "loc.friendlyName": "SharePoint ALM: Tenant Scoped Actions",
   "loc.helpMarkDown": "",
-  "loc.description": "Add/Deploy a SharePoint solution package in the Tenant App Catalog.",
+  "loc.description": "ALM actions in scope of the SharePoint Tenant App Catalog.",
   "loc.instanceNameFormat": "SharePoint ALM: $(Action) Solution Package",
-  "loc.input.label.appCatalogConnection": "Connection to the Tenant App Catalog",
+  "loc.input.label.appCatalogConnection": "Connection to the SharePoint Tenant App Catalog",
   "loc.input.help.appCatalogConnection": "Select the service connection to the SharePoint Tenant App Catalog.",
   "loc.input.label.Action": "Action",
   "loc.input.help.Action": "Action to be performed on the App Service. You can Start, Stop, Restart, Slot swap, Install site extensions or enable Continuous Monitoring for an Azure App Service",

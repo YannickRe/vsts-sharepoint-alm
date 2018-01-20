@@ -50,7 +50,10 @@
     },
     "files": [
         {
-            "path": "_build/Tasks/AddDeploySolutionPackage"
+            "path": "_build/Tasks/SharePointALMTenantScoped"
+        },
+        {
+            "path": "_build/Tasks/SharePointALMSiteScoped"
         }
     ],
     "scope": [
@@ -59,11 +62,19 @@
     ],
     "contributions": [
         {
-            "id": "add-deploy-solution-package",
+            "id": "tenant-scoped-actions",
             "type": "ms.vss-distributed-task.task",
             "targets": [ "ms.vss-distributed-task.tasks" ],
             "properties": {
-                "name": "_build/Tasks/AddDeploySolutionPackage"
+                "name": "_build/Tasks/SharePointALMTenantScoped"
+            }
+        },
+        {
+            "id": "sharepoint-scoped-actions",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [ "ms.vss-distributed-task.tasks" ],
+            "properties": {
+                "name": "_build/Tasks/SharePointALMSiteScoped"
             }
         }
     ]

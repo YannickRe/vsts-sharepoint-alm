@@ -1,8 +1,8 @@
 {
     "id": "9e7e19af-f07d-4ccf-863a-74d2c93fa926",
-    "name": "AddDeploySolutionPackage",
-    "friendlyName": "SharePoint ALM: Add/Deploy Package",
-    "description": "Add/Deploy a SharePoint solution package in the Tenant App Catalog.",
+    "name": "SharePointALMTenantScoped",
+    "friendlyName": "SharePoint ALM: Tenant Scoped Actions",
+    "description": "ALM actions in scope of the SharePoint Tenant App Catalog.",
     "helpMarkDown": "",
     "category": "Deploy",
     "author": "Yannick Reekmans",
@@ -17,7 +17,7 @@
         {
             "name": "appCatalogConnection",
             "type": "connectedService:Generic",
-            "label": "Connection to the Tenant App Catalog",
+            "label": "Connection to the SharePoint Tenant App Catalog",
             "defaultValue": "",
             "required": true,
             "properties": {
@@ -34,7 +34,9 @@
             "defaultValue": "Add",
             "options": {
                 "Add": "Add Solution Package",
-                "Deploy": "Deploy Solution Package"
+                "Deploy": "Deploy Solution Package",
+                "Retract": "Retract Solution Package",
+                "Remove": "Remove Solution Package"
             }
         },
         {
@@ -83,7 +85,7 @@
                 "EditableOptions": "True"
             },
             "helpMarkDown": "Id of the package in the SharePoint Tenant App Catalog.",
-            "visibleRule": "Action = Deploy"
+            "visibleRule": "Action != Add"
         },
         {
             "name": "skipFeatureDeployment",
@@ -101,7 +103,7 @@
     "instanceNameFormat": "SharePoint ALM: $(Action) Solution Package",
     "execution": {
         "Node": {
-            "target": "add-solution-package.js",
+            "target": "tenant-scoped-actions.js",
             "argumentFormat": ""
         }
     }

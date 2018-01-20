@@ -1,6 +1,6 @@
 {
   "id": "9e7e19af-f07d-4ccf-863a-74d2c93fa926",
-  "name": "AddDeploySolutionPackage",
+  "name": "SharePointALMTenantScoped",
   "friendlyName": "ms-resource:loc.friendlyName",
   "description": "ms-resource:loc.description",
   "helpMarkDown": "ms-resource:loc.helpMarkDown",
@@ -34,7 +34,9 @@
       "defaultValue": "Add",
       "options": {
         "Add": "Add Solution Package",
-        "Deploy": "Deploy Solution Package"
+        "Deploy": "Deploy Solution Package",
+        "Retract": "Retract Solution Package",
+        "Remove": "Remove Solution Package"
       }
     },
     {
@@ -83,7 +85,7 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.packageIdIn",
-      "visibleRule": "Action = Deploy"
+      "visibleRule": "Action != Add"
     },
     {
       "name": "skipFeatureDeployment",
@@ -101,7 +103,7 @@
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
   "execution": {
     "Node": {
-      "target": "add-solution-package.js",
+      "target": "tenant-scoped-actions.js",
       "argumentFormat": ""
     }
   }

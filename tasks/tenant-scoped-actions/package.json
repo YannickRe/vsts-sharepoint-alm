@@ -1,8 +1,8 @@
 {
-  "name": "add-deploy-solution-package",
+  "name": "tenant-scoped-actions",
   "version": "0.1.0",
-  "description": "Add/Deploy SharePoint Solution Package in Tenant App Catalog",
-  "main": "add-deploy-solution-package.js",
+  "description": "ALM actions in scope of the SharePoint Tenant App Catalog.",
+  "main": "tenant-scoped-actions.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

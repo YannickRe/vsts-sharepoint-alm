@@ -1,0 +1,108 @@
+{
+    "id": "9e7e19af-f07d-4ccf-863a-74d2c93fa926",
+    "name": "AddDeploySolutionPackage",
+    "friendlyName": "SharePoint ALM: Add/Deploy Package",
+    "description": "Add/Deploy a SharePoint solution package in the Tenant App Catalog.",
+    "helpMarkDown": "",
+    "category": "Deploy",
+    "author": "Yannick Reekmans",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 4
+    },
+    "demands": [],
+    "minimumAgentVersion": "1.99.0",
+    "inputs": [
+        {
+            "name": "appCatalogConnection",
+            "type": "connectedService:Generic",
+            "label": "Connection to the Tenant App Catalog",
+            "defaultValue": "",
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Select the service connection to the SharePoint Tenant App Catalog."
+        },
+        {
+            "name": "Action",
+            "type": "pickList",
+            "label": "Action",
+            "required": false,
+            "helpMarkDown": "Action to be performed on the App Service. You can Start, Stop, Restart, Slot swap, Install site extensions or enable Continuous Monitoring for an Azure App Service",
+            "defaultValue": "Add",
+            "options": {
+                "Add": "Add Solution Package",
+                "Deploy": "Deploy Solution Package"
+            }
+        },
+        {
+            "name": "appFilePath",
+            "type": "filePath",
+            "label": "Path to the SharePoint solution package",
+            "defaultValue": "",
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Path to the SharePoint solution package that needs to be added to the SharePoint Tenant App Catalog.",
+            "visibleRule": "Action = Add"
+        },
+        {
+            "name": "overwriteExisting",
+            "type": "boolean",
+            "label": "Overwrite package if exists",
+            "defaultValue": true,
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Whether or not an existing package with the same name will be overwritten.",
+            "visibleRule": "Action = Add"
+        },
+        {
+            "name": "packageIdOut",
+            "type": "string",
+            "label": "PackageId output variable",
+            "defaultValue": "AppPackageId",
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "",
+            "visibleRule": "Action = Add"
+        },
+        {
+            "name": "packageIdIn",
+            "type": "string",
+            "label": "Id of the package in the SharePoint Tenant App Catalog",
+            "defaultValue": "",
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Id of the package in the SharePoint Tenant App Catalog.",
+            "visibleRule": "Action = Deploy"
+        },
+        {
+            "name": "skipFeatureDeployment",
+            "type": "boolean",
+            "label": "Tenant-wide deployment of the Solution Package",
+            "defaultValue": true,
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "Tenant-wide deployment of the Solution Package.",
+            "visibleRule": "Action = Deploy"
+        }
+    ],
+    "instanceNameFormat": "SharePoint ALM: $(Action) Solution Package",
+    "execution": {
+        "Node": {
+            "target": "add-solution-package.js",
+            "argumentFormat": ""
+        }
+    }
+}

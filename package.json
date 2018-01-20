@@ -1,5 +1,5 @@
 {
-  "name": "infront.vsts.sharepointalm",
+  "name": "yr.vsts.sharepointalm",
   "version": "0.1.0",
   "description": "SharePoint ALM tasks for VSTS",
   "main": "gulpfile.js",

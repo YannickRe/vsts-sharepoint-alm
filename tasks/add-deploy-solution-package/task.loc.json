@@ -1,0 +1,108 @@
+{
+  "id": "9e7e19af-f07d-4ccf-863a-74d2c93fa926",
+  "name": "AddDeploySolutionPackage",
+  "friendlyName": "ms-resource:loc.friendlyName",
+  "description": "ms-resource:loc.description",
+  "helpMarkDown": "ms-resource:loc.helpMarkDown",
+  "category": "Deploy",
+  "author": "Yannick Reekmans",
+  "version": {
+    "Major": 0,
+    "Minor": 1,
+    "Patch": 4
+  },
+  "demands": [],
+  "minimumAgentVersion": "1.99.0",
+  "inputs": [
+    {
+      "name": "appCatalogConnection",
+      "type": "connectedService:Generic",
+      "label": "ms-resource:loc.input.label.appCatalogConnection",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.appCatalogConnection"
+    },
+    {
+      "name": "Action",
+      "type": "pickList",
+      "label": "ms-resource:loc.input.label.Action",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.Action",
+      "defaultValue": "Add",
+      "options": {
+        "Add": "Add Solution Package",
+        "Deploy": "Deploy Solution Package"
+      }
+    },
+    {
+      "name": "appFilePath",
+      "type": "filePath",
+      "label": "ms-resource:loc.input.label.appFilePath",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.appFilePath",
+      "visibleRule": "Action = Add"
+    },
+    {
+      "name": "overwriteExisting",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.overwriteExisting",
+      "defaultValue": true,
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.overwriteExisting",
+      "visibleRule": "Action = Add"
+    },
+    {
+      "name": "packageIdOut",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.packageIdOut",
+      "defaultValue": "AppPackageId",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "",
+      "visibleRule": "Action = Add"
+    },
+    {
+      "name": "packageIdIn",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.packageIdIn",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.packageIdIn",
+      "visibleRule": "Action = Deploy"
+    },
+    {
+      "name": "skipFeatureDeployment",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.skipFeatureDeployment",
+      "defaultValue": true,
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.skipFeatureDeployment",
+      "visibleRule": "Action = Deploy"
+    }
+  ],
+  "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
+  "execution": {
+    "Node": {
+      "target": "add-solution-package.js",
+      "argumentFormat": ""
+    }
+  }
+}

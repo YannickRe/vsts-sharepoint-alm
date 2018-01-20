@@ -1,0 +1,19 @@
+{
+  "loc.friendlyName": "SharePoint ALM: Add/Deploy Package",
+  "loc.helpMarkDown": "",
+  "loc.description": "Add/Deploy a SharePoint solution package in the Tenant App Catalog.",
+  "loc.instanceNameFormat": "SharePoint ALM: $(Action) Solution Package",
+  "loc.input.label.appCatalogConnection": "Connection to the Tenant App Catalog",
+  "loc.input.help.appCatalogConnection": "Select the service connection to the SharePoint Tenant App Catalog.",
+  "loc.input.label.Action": "Action",
+  "loc.input.help.Action": "Action to be performed on the App Service. You can Start, Stop, Restart, Slot swap, Install site extensions or enable Continuous Monitoring for an Azure App Service",
+  "loc.input.label.appFilePath": "Path to the SharePoint solution package",
+  "loc.input.help.appFilePath": "Path to the SharePoint solution package that needs to be added to the SharePoint Tenant App Catalog.",
+  "loc.input.label.overwriteExisting": "Overwrite package if exists",
+  "loc.input.help.overwriteExisting": "Whether or not an existing package with the same name will be overwritten.",
+  "loc.input.label.packageIdOut": "PackageId output variable",
+  "loc.input.label.packageIdIn": "Id of the package in the SharePoint Tenant App Catalog",
+  "loc.input.help.packageIdIn": "Id of the package in the SharePoint Tenant App Catalog.",
+  "loc.input.label.skipFeatureDeployment": "Tenant-wide deployment of the Solution Package",
+  "loc.input.help.skipFeatureDeployment": "Tenant-wide deployment of the Solution Package."
+}

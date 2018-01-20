@@ -1,6 +1,6 @@
 {
     "tasks": [
-        "add-solution-package"
+        "add-deploy-solution-package"
     ],
     "taskResources": [
         "*.ps1",

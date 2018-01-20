@@ -25,12 +25,25 @@ gulp.task('build', function (cb) {
     make('build', cb);
 });
 
+gulp.task('bump', function (cb) {
+    make('bump', cb);
+});
+
 gulp.task('default', ['build']);
 
 gulp.task('package', function (cb) {
-    var publish = process.argv.filter(function (arg) { return arg == '--server' }).length > 0;
-    make('build', cb) &&
-    make('package', cb) &&
-    publish &&
-    make('publish', cb);
+    var cl = ('tfx extension create --manifest-globs .\\vsts-extension.json').trim();
+    console.log('------------------------------------------------------------');
+    console.log('> ' + cl);
+    console.log('------------------------------------------------------------');
+    try {
+        child_process.execSync(cl, { cwd: __dirname, stdio: 'inherit' });
+    }
+    catch (err) {
+        var msg = err.output ? err.output.toString() : err.message;
+        console.error(msg);
+        cb(new gutil.PluginError(msg));
+        return false;
+    }
+    return true;
 });

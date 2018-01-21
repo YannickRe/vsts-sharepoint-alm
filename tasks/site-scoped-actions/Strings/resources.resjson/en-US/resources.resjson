@@ -7,6 +7,6 @@
   "loc.input.help.spSiteConnection": "Select the service connection to the SharePoint Site.",
   "loc.input.label.action": "Action",
   "loc.input.help.action": "Action to be performed on the Solution Package",
-  "loc.input.label.packageIdIn": "Id of the package in the SharePoint Tenant App Catalog",
-  "loc.input.help.packageIdIn": "Id of the package in the SharePoint Tenant App Catalog."
+  "loc.input.label.packageId": "Id of the package in the SharePoint Tenant App Catalog",
+  "loc.input.help.packageId": "Id of the package in the SharePoint Tenant App Catalog."
 }

@@ -39,7 +39,7 @@
             }
         },
         {
-            "name": "packageIdIn",
+            "name": "packageId",
             "type": "string",
             "label": "Id of the package in the SharePoint Tenant App Catalog",
             "defaultValue": "",

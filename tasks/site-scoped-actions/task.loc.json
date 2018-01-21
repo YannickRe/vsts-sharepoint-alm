@@ -39,15 +39,15 @@
       }
     },
     {
-      "name": "packageIdIn",
+      "name": "packageId",
       "type": "string",
-      "label": "ms-resource:loc.input.label.packageIdIn",
+      "label": "ms-resource:loc.input.label.packageId",
       "defaultValue": "",
       "required": true,
       "properties": {
         "EditableOptions": "True"
       },
-      "helpMarkDown": "ms-resource:loc.input.help.packageIdIn"
+      "helpMarkDown": "ms-resource:loc.input.help.packageId"
     }
   ],
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",

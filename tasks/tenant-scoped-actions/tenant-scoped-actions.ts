@@ -1,43 +1,55 @@
-var path = require('path')
+import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
+import { spAlm } from './sp-alm';
 
 tl.setResourcePath(path.join(__dirname, 'task.json'));
 
 async function main(): Promise<void> {
-	var action = tl.getInput('action', true);
-	var appCatalogConnection: string = tl.getInput('appCatalogConnection', true);
-	var appCatalogUrl: string = tl.getEndpointUrl(appCatalogConnection, false);
-	var appCatalogUsername: string = tl.getEndpointAuthorizationParameter(appCatalogConnection, "username", false);
-	var appCatalogPassword: string = tl.getEndpointAuthorizationParameter(appCatalogConnection, "password", false);
-	var appFilePath: string = (action === "Add") ? tl.getPathInput('appFilePath', true, false).trim() : null;
-	var overwriteExisting: boolean = (action === "Add") ? tl.getBoolInput("overwriteExisting", true) : null;
-	var packageIdOut: string = (action === "Add") ? tl.getInput("packageIdOut", true) : null;
-	var skipFeatureDeployment: boolean = (action === "Deploy") ? tl.getBoolInput("skipFeatureDeployment", true) : null;
-	var packageIdIn: string = (action !== "Add") ? tl.getInput("packageIdIn", true) : null;
+	let action = tl.getInput('action', true);
+	let appCatalogConnection: string = tl.getInput('appCatalogConnection', true);
+	let appCatalogUrl: string = tl.getEndpointUrl(appCatalogConnection, false);
+	let appCatalogUsername: string = tl.getEndpointAuthorizationParameter(appCatalogConnection, "username", false);
+	let appCatalogPassword: string = tl.getEndpointAuthorizationParameter(appCatalogConnection, "password", false);
+	let appFilePath: string = (action === "Add") ? tl.getPathInput('appFilePath', true, false).trim() : "";
+	let overwriteExisting: boolean = (action === "Add") ? tl.getBoolInput("overwriteExisting", true) : false;
+	let packageIdOut: string = (action === "Add") ? tl.getInput("packageIdOut", true) : "";
+	let skipFeatureDeployment: boolean = (action === "Deploy") ? tl.getBoolInput("skipFeatureDeployment", true) : true;
+	let packageIdIn: string = (action !== "Add") ? tl.getInput("packageIdIn", true) : "";
 
 	console.log(`Action: ${action}`);
-	console.log(`App Catalog Connection: ${appCatalogConnection}`);
-	console.log(`App Catalog Url: ${appCatalogUrl}`);
+	console.log(`SharePoint App Catalog Connection: ${appCatalogConnection}`);
+	console.log(`SharePoint App Catalog Url: ${appCatalogUrl}`);
+
+	let almUtil = new spAlm({
+		spSiteUrl: appCatalogUrl,
+		spUsername: appCatalogUsername,
+		spPassword: appCatalogPassword
+	});
 
 	switch(action)
 	{
 		case "Add": {
-			console.log(`App File Path: ${appFilePath}`);
+			console.log(`SharePoint App Package File Path: ${appFilePath}`);
 			console.log(`Overwrite Existing Package: ${overwriteExisting}`);
-			console.log(`Package Id Out: ${packageIdOut}`);
+			console.log(`Package Id Variable: ${packageIdOut}`);
+			// let result = await almUtil.add();
+			// tl.setVariable(packageIdOut, result, false);
 			break;
 		}
 		case "Deploy": {
-			console.log(`Package Id In: ${packageIdIn}`);
+			console.log(`Package Id: ${packageIdIn}`);
 			console.log(`Skip Feature Deployment: ${skipFeatureDeployment}`);
+			await almUtil.deploy(packageIdIn, skipFeatureDeployment);
 			break;
 		}
 		case "Retract": {
-			console.log(`Package Id In: ${packageIdIn}`);
+			console.log(`Package Id: ${packageIdIn}`);
+			await almUtil.retract(packageIdIn);
 			break;
 		}
 		case "Remove": {
-			console.log(`Package Id In: ${packageIdIn}`);
+			console.log(`Package Id: ${packageIdIn}`);
+			await almUtil.remove(packageIdIn);
 			break;
 		}
 	}

@@ -27,13 +27,13 @@
     "minimatch": "3.0.4",
     "minimist": "1.2.0",
     "mocha": "5.0.0",
-    "node-uuid": "^1.4.8",
+    "node-uuid": "1.4.8",
     "q": "1.5.1",
     "semver": "5.5.0",
     "shelljs": "0.3.0",
     "sync-request": "4.1.0",
-    "typescript": "^2.3.4",
-    "validator": "^9.2.0",
-    "vsts-task-lib": "^2.1.0"
+    "typescript": "2.6.2",
+    "validator": "9.2.0",
+    "vsts-task-lib": "2.1.0"
   }
 }

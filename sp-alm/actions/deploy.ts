@@ -12,7 +12,7 @@ export async function deploy(spAlmOptions: ISpAlmOptions, packageId:string, skip
 
         let authResponse = await authHelper.getAuth(spAlmOptions);
         let client = new rm.RestClient("vsts-sharepointalm");
-        let result = await client.create(`${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/GetById('${packageId}')/Deploy`, JSON.stringify({ "skipFeatureDeployment": skipFeatureDeployment }), authResponse.requestOptions);    
+        let result = await client.create(`${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/GetById('${packageId}')/Deploy`, { "skipFeatureDeployment": skipFeatureDeployment }, authResponse.requestOptions);    
         if (result.statusCode !== 200 || result.result["odata.error"]) {
             throw new Error(`Action 'Deploy' failed on package '${packageId}'. StatusCode: ${result.statusCode}. Result: ${result.result}. @odata.error: ${result.result["odata.error"]}.`);
         }

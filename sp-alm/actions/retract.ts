@@ -3,7 +3,7 @@ import * as spauth from 'node-sp-auth';
 import * as authHelper from "../utils/authHelper";
 import { IAppInfo } from "../utils/IAppInfo";
 import * as rp from 'request-promise-native';
-import { IResponse } from "../utils";
+import { RequestResponse } from "request";
 
 export async function retract(spAlmOptions: ISpAlmOptions, packageId:string): Promise<void> {
     try {
@@ -13,7 +13,7 @@ export async function retract(spAlmOptions: ISpAlmOptions, packageId:string): Pr
 
         let authResponse = await authHelper.getAuth(spAlmOptions);
         let apiUrl = `${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/GetById('${packageId}')/Retract`;
-        let result = (await rp.post(apiUrl, { headers: authResponse, resolveWithFullResponse: true })) as IResponse;       
+        let result:RequestResponse = await rp.post(apiUrl, { headers: authResponse, resolveWithFullResponse: true });       
         if (result.statusCode !== 200) {
             throw new Error(`Action 'Retract' failed on package '${packageId}'. StatusCode: ${result.statusCode}. Result: ${result.statusMessage}.`);
         }

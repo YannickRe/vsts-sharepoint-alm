@@ -3,7 +3,7 @@ import * as spauth from 'node-sp-auth';
 import * as authHelper from "../utils/authHelper";
 import { IAppInfo } from "../utils/IAppInfo";
 import * as rp from 'request-promise-native';
-import { IResponse } from "../utils/index";
+import { RequestResponse } from "request";
 
 export async function uninstall(spAlmOptions: ISpAlmOptions, packageId:string): Promise<void> {
     try {
@@ -13,7 +13,7 @@ export async function uninstall(spAlmOptions: ISpAlmOptions, packageId:string): 
 
         let authResponse = await authHelper.getAuth(spAlmOptions);
         let apiUrl = `${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/GetById('${packageId}')/Uninstall`;
-        let result = (await rp.post(apiUrl, { headers: authResponse, resolveWithFullResponse: true })) as IResponse;       
+        let result:RequestResponse = await rp.post(apiUrl, { headers: authResponse, resolveWithFullResponse: true });       
         if (result.statusCode !== 200) {
             throw new Error(`Action 'Uninstall' failed on package '${packageId}'. StatusCode: ${result.statusCode}. Result: ${result.statusMessage}.`);
         }

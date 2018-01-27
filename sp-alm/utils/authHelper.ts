@@ -2,9 +2,10 @@ import { ISpAlmOptions } from "../index";
 import * as spauth from 'node-sp-auth';
 import { IAuthResponse } from "node-sp-auth";
 import * as rp from 'request-promise-native';
-import { IResponse, IHeaders, IFormDigestValue } from "../utils";
+import { IFormDigestValue } from "../utils";
+import { Headers, RequestResponse } from 'request';
 
-export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<IHeaders>
+export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<Headers>
 {
     let authResult = await spauth.getAuth(spAlmOptions.spSiteUrl, {
         username: spAlmOptions.spUsername,
@@ -20,12 +21,12 @@ export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<IHeaders>
     return headers;
 }
 
-async function _getRequestDigestValue(spSiteUrl:string, headers:IHeaders): Promise<string> {
+async function _getRequestDigestValue(spSiteUrl:string, headers:Headers): Promise<string> {
     let apiUrl = `${spSiteUrl}/_api/contextinfo?$select=FormDigestValue`;
-    let result = (await rp.post(apiUrl, { headers: headers, resolveWithFullResponse: true })) as IResponse;
+    let result:RequestResponse = await rp.post(apiUrl, { headers: headers, resolveWithFullResponse: true });
     if (result.statusCode !== 200) {
         throw new Error(`GetDigestValue failed. StatusCode: ${result.statusCode}. Result: ${result.statusMessage}.`);
     }
-    let responseObject = JSON.parse(result.body) as IFormDigestValue;
+    let responseObject:IFormDigestValue = JSON.parse(result.body);
     return responseObject.FormDigestValue;
 }

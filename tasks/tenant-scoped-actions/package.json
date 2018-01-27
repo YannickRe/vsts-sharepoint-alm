@@ -11,8 +11,7 @@
   "dependencies": {
     "node-sp-auth": "^2.3.1",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2",
-    "typed-rest-client": "^1.0.5",
+    "request-promise-native": "^1.0.5",
     "vsts-task-lib": "^2.1.0"
   }
 }

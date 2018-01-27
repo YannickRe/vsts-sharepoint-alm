@@ -1,45 +1,31 @@
 import { ISpAlmOptions } from "../index";
 import * as spauth from 'node-sp-auth';
 import { IAuthResponse } from "node-sp-auth";
-import * as rm from 'typed-rest-client/RestClient';
-import {IFormDigestValue } from "./IFormDigestValue";
+import * as rp from 'request-promise-native';
+import { IResponse, IHeaders, IFormDigestValue } from "../utils";
 
-export interface IAuthInfo {
-    requestOptions: rm.IRequestOptions;
-    options?: {
-        [key: string]: any;
-    };
-}
-
-export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<IAuthInfo>
+export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<IHeaders>
 {
     let authResult = await spauth.getAuth(spAlmOptions.spSiteUrl, {
         username: spAlmOptions.spUsername,
         password: spAlmOptions.spPassword
     });
-    authResult.headers['Accept'] = 'application/json;odata=verbose';
-    authResult.headers['Content-Type'] = 'application/json';
+    let headers = authResult.headers;
+    headers['Accept'] = 'application/json';
+    headers['Content-Type'] = 'application/json';
 
-    let requestInfo = {
-        requestOptions: {
-            additionalHeaders: authResult.headers
-        },
-        options: authResult.options
-    };
+    let formDigestValue = await _getRequestDigestValue(spAlmOptions.spSiteUrl, headers);
+    headers["X-RequestDigest"] = formDigestValue;
 
-    let formDigestValue = await _getRequestDigestValue(spAlmOptions.spSiteUrl, requestInfo.requestOptions);
-    requestInfo.requestOptions.additionalHeaders["X-RequestDigest"] = formDigestValue;
-
-    return requestInfo;
+    return headers;
 }
 
-async function _getRequestDigestValue(spSiteUrl:string, requestOptions:rm.IRequestOptions): Promise<string> {
-    let client = new rm.RestClient("vsts-sharepointalm");
-
-    let result = await client.create<IFormDigestValue>(`${spSiteUrl}/_api/contextinfo?$select=FormDigestValue`, undefined, requestOptions);    
-    if (result.statusCode !== 200 || result.result["odata.error"]) {
-        throw new Error(`GetDigestValue failed. StatusCode: ${result.statusCode}. Result: ${result.result}. @odata.error: ${result.result["odata.error"]}.`);
+async function _getRequestDigestValue(spSiteUrl:string, headers:IHeaders): Promise<string> {
+    let apiUrl = `${spSiteUrl}/_api/contextinfo?$select=FormDigestValue`;
+    let result = (await rp.post(apiUrl, { headers: headers, resolveWithFullResponse: true })) as IResponse;
+    if (result.statusCode !== 200) {
+        throw new Error(`GetDigestValue failed. StatusCode: ${result.statusCode}. Result: ${result.statusMessage}.`);
     }
-
-    return result.result.FormDigestValue;
+    let responseObject = JSON.parse(result.body) as IFormDigestValue;
+    return responseObject.FormDigestValue;
 }

@@ -21,8 +21,6 @@
   "author": "Yannick Reekmans",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^9.3.0",
-    "@types/request": "^2.0.6",
     "adm-zip": "0.4.7",
     "gulp-util": "3.0.8",
     "minimatch": "3.0.4",
@@ -34,7 +32,7 @@
     "shelljs": "0.3.0",
     "sync-request": "4.1.0",
     "typescript": "2.6.2",
-    "validator": "9.2.0"
+    "validator": "^9.2.0"
   },
   "dependencies": {}
 }

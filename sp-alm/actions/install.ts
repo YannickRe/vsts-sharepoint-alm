@@ -1,8 +1,9 @@
 import { ISpAlmOptions } from "../../sp-alm";
 import * as spauth from 'node-sp-auth';
-import * as rm from 'typed-rest-client/RestClient';
 import * as authHelper from "../utils/authHelper";
 import { IAppInfo } from "../utils/IAppInfo";
+import * as rp from 'request-promise-native';
+import { IResponse } from "../utils";
 
 export async function install(spAlmOptions: ISpAlmOptions, packageId:string): Promise<void> {
     try {
@@ -11,10 +12,10 @@ export async function install(spAlmOptions: ISpAlmOptions, packageId:string): Pr
         }
 
         let authResponse = await authHelper.getAuth(spAlmOptions);
-        let client = new rm.RestClient("vsts-sharepointalm");
-        let result = await client.create(`${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/GetById('${packageId}')/Install`, undefined, authResponse.requestOptions);    
-        if (result.statusCode !== 200 || result.result["odata.error"]) {
-            throw new Error(`Action 'Install' failed on package '${packageId}'. StatusCode: ${result.statusCode}. Result: ${result.result}. @odata.error: ${result.result["odata.error"]}.`);
+        let apiUrl = `${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/GetById('${packageId}')/Install`;
+        let result = (await rp.post(apiUrl, { headers: authResponse, resolveWithFullResponse: true })) as IResponse;       
+        if (result.statusCode !== 200) {
+            throw new Error(`Action 'Install' failed on package '${packageId}'. StatusCode: ${result.statusCode}. Result: ${result.statusMessage}.`);
         }
     } catch(e) {
         if (e instanceof Error)

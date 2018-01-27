@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
+import * as fs from 'fs';
 import { spAlm } from './sp-alm';
 
 tl.setResourcePath(path.join(__dirname, 'task.json'));
@@ -32,8 +33,15 @@ async function main(): Promise<void> {
 			console.log(`SharePoint App Package File Path: ${appFilePath}`);
 			console.log(`Overwrite Existing Package: ${overwriteExisting}`);
 			console.log(`Package Id Variable: ${packageIdOut}`);
-			// let result = await almUtil.add();
-			// tl.setVariable(packageIdOut, result, false);
+
+			if (!tl.exist(appFilePath) || !tl.stats(appFilePath).isFile()){
+				throw `File '${appFilePath}' couldn't be found.`;
+			}
+			let fileName = path.basename(appFilePath);
+			let fileContents = fs.readFileSync(appFilePath);
+
+			let result = await almUtil.add(fileName, fileContents, overwriteExisting);
+			tl.setVariable(packageIdOut, result.UniqueId, false);
 			break;
 		}
 		case "Deploy": {

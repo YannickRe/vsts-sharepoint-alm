@@ -1,10 +1,12 @@
 import { ISpAlmOptions } from "../../sp-alm";
 import * as spauth from 'node-sp-auth';
-import * as rm from 'typed-rest-client/RestClient';
 import * as authHelper from "../utils/authHelper";
 import { IAppInfo } from "../utils/IAppInfo";
+import { IAddedAppInfo } from "../utils/IAddedAppInfo";
+import * as rp from 'request-promise';
+import { RequestResponse } from "../utils/RequestResponse";
 
-export async function add(spAlmOptions: ISpAlmOptions, fileName: string, fileContents: Buffer, overwriteExisting: boolean): Promise<any> {
+export async function add(spAlmOptions: ISpAlmOptions, fileName: string, fileContents: Buffer, overwriteExisting: boolean): Promise<IAddedAppInfo> {
     try {
         if (!fileName) {
             throw new Error("fileName argument is required");
@@ -14,13 +16,16 @@ export async function add(spAlmOptions: ISpAlmOptions, fileName: string, fileCon
         }
 
         let authResponse = await authHelper.getAuth(spAlmOptions);
-        let client = new rm.RestClient("vsts-sharepointalm");
         authResponse.requestOptions.additionalHeaders["binaryStringRequestBody"] = true;
 
-        let result = await client.create(`${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/AvailableApps/Add(overwrite=${overwriteExisting}, url='${fileName}')`, fileContents, authResponse.requestOptions);    
-        if (result.statusCode !== 200 || result.result["odata.error"]) {
-            throw new Error(`Action 'Add' failed on package '${fileName}'. StatusCode: ${result.statusCode}. Result: ${result.result}. @odata.error: ${result.result["odata.error"]}.`);
+        let apiUrl = `${spAlmOptions.spSiteUrl}/_api/web/tenantappcatalog/Add(overwrite=${overwriteExisting}, url='${fileName}')`;
+        let headers = authResponse.requestOptions.additionalHeaders;
+
+        let result = <RequestResponse>(await rp.post(apiUrl, { headers, body: fileContents, resolveWithFullResponse: true }));
+        if (result.statusCode !== 200) {
+            throw new Error(`Action 'Add' failed on package '${fileName}'. StatusCode: ${result.statusMessage}.`);
         }
+        return <IAddedAppInfo>JSON.parse(result.body);
     } catch(e) {
         if (e instanceof Error)
         {

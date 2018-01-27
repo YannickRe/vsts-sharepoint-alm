@@ -30,8 +30,6 @@ export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<IAuthInfo>
     let formDigestValue = await _getRequestDigestValue(spAlmOptions.spSiteUrl, requestInfo.requestOptions);
     requestInfo.requestOptions.additionalHeaders["X-RequestDigest"] = formDigestValue;
 
-    console.log(`RequestOptions: ${requestInfo}`);
-
     return requestInfo;
 }
 

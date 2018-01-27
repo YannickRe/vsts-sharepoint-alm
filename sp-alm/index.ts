@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as actions from './actions';
+import { IAddedAppInfo } from "./utils/IAddedAppInfo";
 
 export interface ISpAlmOptions {
     spSiteUrl: string;
@@ -27,7 +28,7 @@ export class spAlm {
         }
     }
 
-    public async add(fileName: string, fileContents: Buffer, overwriteExisting: boolean): Promise<any>
+    public async add(fileName: string, fileContents: Buffer, overwriteExisting: boolean): Promise<IAddedAppInfo>
     {
         return await actions.add(this._spAlmOptions, fileName, fileContents, overwriteExisting);
     }

@@ -23,7 +23,7 @@ export async function getAuth(spAlmOptions: ISpAlmOptions) : Promise<Headers>
 
 async function _getRequestDigestValue(spSiteUrl:string, headers:Headers): Promise<string> {
     let apiUrl = `${spSiteUrl}/_api/contextinfo?$select=FormDigestValue`;
-    let result:RequestResponse = await rp.post(apiUrl, { headers: headers, resolveWithFullResponse: true });
+    let result:RequestResponse = await rp.post(apiUrl, { headers: headers, resolveWithFullResponse: true, simple: false });
     if (result.statusCode !== 200) {
         throw new Error(`GetDigestValue failed. StatusCode: ${result.statusCode}. Result: ${result.statusMessage}.`);
     }

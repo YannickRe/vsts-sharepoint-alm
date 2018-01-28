@@ -11,6 +11,7 @@ async function main(): Promise<void> {
 	var spSiteUsername: string = tl.getEndpointAuthorizationParameter(spSiteConnection, "username", false);
 	var spSitePassword: string = tl.getEndpointAuthorizationParameter(spSiteConnection, "password", false);
 	var packageId: string = tl.getInput("packageId", true);
+	var overwriteSpSiteUrls: string[] = tl.getDelimitedInput('overwriteSpSiteUrls', '\n', false);
 
 	console.log(`Action: ${action}`);
 	console.log(`App Catalog Connection: ${spSiteConnection}`);
@@ -26,15 +27,15 @@ async function main(): Promise<void> {
 	switch(action)
 	{
 		case "Install": {
-			await almUtil.install(packageId);
+			await almUtil.install(packageId, overwriteSpSiteUrls);
 			break;
 		}
 		case "Uninstall": {
-			await almUtil.uninstall(packageId);
+			await almUtil.uninstall(packageId, overwriteSpSiteUrls);
 			break;
 		}
 		case "Upgrade": {
-			await almUtil.upgrade(packageId);
+			await almUtil.upgrade(packageId,overwriteSpSiteUrls);
 			break;
 		}
 	}

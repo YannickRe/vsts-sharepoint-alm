@@ -9,7 +9,7 @@
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 44
+    "Patch": 46
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
@@ -24,6 +24,18 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.spSiteConnection"
+    },
+    {
+      "name": "overwriteSpSiteUrls",
+      "type": "multiLine",
+      "label": "ms-resource:loc.input.label.overwriteSpSiteUrls",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.overwriteSpSiteUrls",
+      "properties": {
+        "resizable": "true",
+        "rows": "4"
+      }
     },
     {
       "name": "action",

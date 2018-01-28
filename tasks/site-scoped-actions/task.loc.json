@@ -9,14 +9,14 @@
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 46
+    "Patch": 55
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
   "inputs": [
     {
       "name": "spSiteConnection",
-      "type": "connectedService:Generic",
+      "type": "connectedService:sharepoint-online-site",
       "label": "ms-resource:loc.input.label.spSiteConnection",
       "defaultValue": "",
       "required": true,

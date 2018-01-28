@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
 import { spAlm } from './sp-alm';
+import * as authHelper from "./sp-alm/utils/authHelper";
 
 tl.setResourcePath(path.join(__dirname, 'task.json'));
 
@@ -8,8 +9,7 @@ async function main(): Promise<void> {
 	var action = tl.getInput('action', true);
 	var spSiteConnection: string = tl.getInput('spSiteConnection', true);
 	var spSiteUrl: string = tl.getEndpointUrl(spSiteConnection, false);
-	var spSiteUsername: string = tl.getEndpointAuthorizationParameter(spSiteConnection, "username", false);
-	var spSitePassword: string = tl.getEndpointAuthorizationParameter(spSiteConnection, "password", false);
+	let spSiteAuthType: string = tl.getEndpointAuthorizationScheme(spSiteConnection, false);
 	var packageId: string = tl.getInput("packageId", true);
 	var overwriteSpSiteUrls: string[] = tl.getDelimitedInput('overwriteSpSiteUrls', '\n', false);
 
@@ -18,10 +18,10 @@ async function main(): Promise<void> {
 	console.log(`App Catalog Url: ${spSiteUrl}`);
 	console.log(`Package Id: ${packageId}`);
 
+	let authOptions = authHelper.getVstsAuthenticationValues(spSiteAuthType, spSiteConnection);
 	let almUtil = new spAlm({
 		spSiteUrl: spSiteUrl,
-		spUsername: spSiteUsername,
-		spPassword: spSitePassword
+		spAuthOptions: authOptions
 	});
 
 	switch(action)

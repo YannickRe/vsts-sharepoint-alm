@@ -241,4 +241,9 @@ target.bump = function() {
         taskJson.version.Patch = taskJson.version.Patch + 1;
         fs.writeFileSync(taskJsonPath, JSON.stringify(taskJson, null, 4));
     });
+    var taskJsonPath = path.join(__dirname, 'vsts-extension.json');
+    var taskJson = JSON.parse(fs.readFileSync(taskJsonPath));
+
+    taskJson.version = semver.inc(taskJson.version, "patch");
+    fs.writeFileSync(taskJsonPath, JSON.stringify(taskJson, null, 4));
 }

@@ -1,11 +1,11 @@
 import * as fs from "fs";
 import * as actions from './actions';
 import { IAddedAppInfo } from "./utils/IAddedAppInfo";
+import { IAuthOptions } from "node-sp-auth";
 
 export interface ISpAlmOptions {
     spSiteUrl: string;
-    spUsername: string;
-    spPassword: string;
+    spAuthOptions: IAuthOptions;
 }
 
 export class spAlm {
@@ -15,12 +15,8 @@ export class spAlm {
     {
         this._spAlmOptions = spAlmOptions;
 
-        if (!this._spAlmOptions.spUsername) {
-            throw "Username is required";
-        }
-
-        if (!this._spAlmOptions.spPassword) {
-            throw "Password is required";
+        if (!this._spAlmOptions.spAuthOptions) {
+            throw "spAuthOptions is required";
         }
 
         if (!this._spAlmOptions.spSiteUrl) {

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "applicationinsights": "^1.0.1",
     "node-sp-auth": "^2.3.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",

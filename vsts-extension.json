@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "sharepoint-alm",
     "name": "SharePoint ALM",
-    "version": "0.1.60",
+    "version": "0.1.62",
     "publisher": "yannickr",
     "description": "Provides tasks that leverage the SharePoint ALM API's from Visual Studio Team Services build or release definition",
     "categories": [
@@ -41,7 +41,7 @@
             "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"
         },
         "issues": {
-            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"    
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"
         }
     },
     "repository": {

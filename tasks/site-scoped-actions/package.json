@@ -1,6 +1,6 @@
 {
     "name": "site-scoped-actions",
-    "version": "0.1.60",
+    "version": "0.1.62",
     "description": "SharePoint ALM tasks for Visual Studio Team Services",
     "main": "site-scoped-actions.js",
     "scripts": {

@@ -1,3 +1,4 @@
+import appInsights from './sp-alm/utils/appInsightsHelper';
 import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
 import { spAlm } from './sp-alm';
@@ -12,6 +13,13 @@ async function main(): Promise<void> {
 	let spSiteAuthType: string = tl.getEndpointAuthorizationScheme(spSiteConnection, false);
 	var packageId: string = tl.getInput("packageId", true);
 	var overwriteSpSiteUrls: string[] = tl.getDelimitedInput('overwriteSpSiteUrls', '\n', false);
+
+	appInsights.trackEvent({
+		name: action,
+		properties: {
+			"authType": spSiteAuthType
+		}
+	});
 
 	console.log(`Action: ${action}`);
 	console.log(`App Catalog Connection: ${spSiteConnection}`);

@@ -1,3 +1,4 @@
+import appInsights from './sp-alm/utils/appInsightsHelper';
 import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
 import * as fs from 'fs';
@@ -16,6 +17,13 @@ async function main(): Promise<void> {
 	let packageIdOut: string = (action === "Add") ? tl.getInput("packageIdOut", true) : "";
 	let skipFeatureDeployment: boolean = (action === "Deploy") ? tl.getBoolInput("skipFeatureDeployment", true) : true;
 	let packageIdIn: string = (action !== "Add") ? tl.getInput("packageIdIn", true) : "";
+
+	appInsights.trackEvent({
+		name: action,
+		properties: {
+			"authType": appCatalogAuthType
+		}
+	});
 
 	console.log(`Action: ${action}`);
 	console.log(`SharePoint App Catalog Connection: ${appCatalogConnection}`);

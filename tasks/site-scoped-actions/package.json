@@ -1,18 +1,27 @@
 {
-  "name": "site-scoped-actions",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "applicationinsights": "^1.0.1",
-    "node-sp-auth": "^2.3.1",
-    "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
-    "vsts-task-lib": "^2.1.0"
-  }
+    "name": "site-scoped-actions",
+    "version": "0.1.60",
+    "description": "SharePoint ALM tasks for Visual Studio Team Services",
+    "main": "site-scoped-actions.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
+    },
+    "bugs": {
+        "url": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"
+    },
+    "homepage": "https://github.com/YannickRe/vsts-sharepoint-alm",
+    "author": "Yannick Reekmans",
+    "license": "MIT",
+    "dependencies": {
+        "@types/request": "^2.47.0",
+        "applicationinsights": "^1.0.1",
+        "node-sp-auth": "^2.3.1",
+        "request": "^2.83.0",
+        "request-promise-native": "^1.0.5",
+        "vsts-task-lib": "^2.1.0"
+    }
 }

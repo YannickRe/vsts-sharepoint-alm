@@ -240,10 +240,22 @@ target.bump = function() {
 
         taskJson.version.Patch = taskJson.version.Patch + 1;
         fs.writeFileSync(taskJsonPath, JSON.stringify(taskJson, null, 4));
+
+        var taskPackageJsonPath = path.join(__dirname, 'Tasks', taskName, 'package.json');
+        var taskPackageJson = JSON.parse(fs.readFileSync(taskPackageJsonPath));
+
+        taskPackageJson.version = semver.inc(taskPackageJson.version, "patch");
+        fs.writeFileSync(taskPackageJsonPath, JSON.stringify(taskPackageJson, null, 4));
     });
     var taskJsonPath = path.join(__dirname, 'vsts-extension.json');
     var taskJson = JSON.parse(fs.readFileSync(taskJsonPath));
 
     taskJson.version = semver.inc(taskJson.version, "patch");
     fs.writeFileSync(taskJsonPath, JSON.stringify(taskJson, null, 4));
+
+    var taskPackageJsonPath = path.join(__dirname, 'package.json');
+    var taskPackageJson = JSON.parse(fs.readFileSync(taskPackageJsonPath));
+
+    taskPackageJson.version = semver.inc(taskPackageJson.version, "patch");
+    fs.writeFileSync(taskPackageJsonPath, JSON.stringify(taskPackageJson, null, 4));
 }

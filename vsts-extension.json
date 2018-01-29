@@ -2,9 +2,9 @@
     "manifestVersion": 1,
     "id": "sharepoint-alm",
     "name": "SharePoint ALM",
-    "version": "0.1.57",
+    "version": "0.1.60",
     "publisher": "yannickr",
-    "description": "Provides tasks that leverage the SharePoint ALM API's from TFS/Team Services build or release definition",
+    "description": "Provides tasks that leverage the SharePoint ALM API's from Visual Studio Team Services build or release definition",
     "categories": [
         "Build and release"
     ],
@@ -30,8 +30,23 @@
     ],
     "content": {
         "details": {
-            "path": "docs/sharepointalm-README.md"
+            "path": "README.md"
         }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
+        },
+        "support": {
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"
+        },
+        "issues": {
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"    
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
     },
     "files": [
         {
@@ -39,6 +54,10 @@
         },
         {
             "path": "_build/Tasks/SharePointALMSiteScoped"
+        },
+        {
+            "path": "images",
+            "addressable": true
         }
     ],
     "scope": [

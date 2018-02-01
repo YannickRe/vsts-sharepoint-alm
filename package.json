@@ -1,6 +1,6 @@
 {
     "name": "yr.vsts.sharepointalm",
-    "version": "0.1.62",
+    "version": "0.1.74",
     "description": "SharePoint ALM tasks for Visual Studio Team Services",
     "main": "gulpfile.js",
     "scripts": {

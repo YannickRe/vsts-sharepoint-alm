@@ -21,7 +21,11 @@ async function main(): Promise<void> {
 	appInsights.trackEvent({
 		name: action,
 		properties: {
-			"authType": appCatalogAuthType
+			"scope": "tenant",
+			"action": action,
+			"authType": appCatalogAuthType,
+			"collection": tl.getVariable("system.collectionId"), 
+			"projectId": tl.getVariable("system.teamProjectId")
 		}
 	});
 
@@ -70,10 +74,35 @@ async function main(): Promise<void> {
 			break;
 		}
 	}
-
 	console.log("Action completed");
 }
 
-main()
-	.then((result) => tl.setResult(tl.TaskResult.Succeeded, ""))
-	.catch((error) => tl.setResult(tl.TaskResult.Failed, error));
+try
+{
+	var action = tl.getInput('action', true);
+	let appCatalogConnection: string = tl.getInput('appCatalogConnection', true);
+	let appCatalogAuthType: string = tl.getEndpointAuthorizationScheme(appCatalogConnection, false);
+
+	main()
+	.then((result) => { tl.setResult(tl.TaskResult.Succeeded, "");})
+	.catch((error) => {
+		appInsights.trackException({ exception: <Error>error });
+
+		appInsights.trackEvent({
+			name: action,
+			properties: {
+				"failed": "true", 
+				"scope": "tenant",
+				"action": action,
+				"authType": appCatalogAuthType,
+				"collection": tl.getVariable("system.collectionId"), 
+				"projectId": tl.getVariable("system.teamProjectId")
+			}
+		});
+
+		tl.setResult(tl.TaskResult.Failed, error);
+	});
+}
+finally{
+	appInsights.flush();
+}

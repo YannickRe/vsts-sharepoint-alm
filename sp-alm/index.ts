@@ -61,7 +61,7 @@ export class spAlm {
                 {
                     let spSiteUrl = overwriteSpSiteUrls[i];
                     console.log(`Performing action on ${spSiteUrl}`);
-                    let opt = this._spAlmOptions;
+                    let opt = {...this._spAlmOptions};
                     opt.spSiteUrl = spSiteUrl;
                     await action(opt, packageId);
                 } catch(e) {
@@ -69,9 +69,11 @@ export class spAlm {
                     {
                         errors.push(e.message);
                     }
+                    else {
+                        errors.push(e);
+                    }
                 }
             }
-
             if (errors.length > 0)
             {
                 throw new Error(errors.join('\n'));

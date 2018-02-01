@@ -17,7 +17,11 @@ async function main(): Promise<void> {
 	appInsights.trackEvent({
 		name: action,
 		properties: {
-			"authType": spSiteAuthType
+			"scope": "site",
+			"action": action,
+			"authType": spSiteAuthType,
+			"collection": tl.getVariable("system.collectionId"), 
+			"projectId": tl.getVariable("system.teamProjectId")
 		}
 	});
 
@@ -47,8 +51,34 @@ async function main(): Promise<void> {
 			break;
 		}
 	}
+	console.log("Action completed");
 }
+try
+{
+	var action = tl.getInput('action', true);
+	var spSiteConnection: string = tl.getInput('spSiteConnection', true);
+	let spSiteAuthType: string = tl.getEndpointAuthorizationScheme(spSiteConnection, false);
 
-main()
-	.then((result) => tl.setResult(tl.TaskResult.Succeeded, ""))
-	.catch((error) => tl.setResult(tl.TaskResult.Failed, error));
+	main()
+	.then((result) => { tl.setResult(tl.TaskResult.Succeeded, "");})
+	.catch((error) => {
+		appInsights.trackException({ exception: <Error>error });
+
+		appInsights.trackEvent({
+			name: action,
+			properties: {
+				"failed": "true", 
+				"scope": "site",
+				"action": action,
+				"authType": spSiteAuthType,
+				"collection": tl.getVariable("system.collectionId"), 
+				"projectId": tl.getVariable("system.teamProjectId")
+			}
+		});
+
+		tl.setResult(tl.TaskResult.Failed, error);
+	});
+}
+finally{
+	appInsights.flush();
+}

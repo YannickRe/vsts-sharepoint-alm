@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "sharepoint-alm",
     "name": "SharePoint ALM",
-    "version": "0.1.74",
+    "version": "0.1.76",
     "publisher": "yannickr",
     "description": "Provides tasks that leverage the SharePoint ALM API's from Visual Studio Team Services build or release definition",
     "categories": [

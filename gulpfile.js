@@ -32,7 +32,7 @@ gulp.task('bump', function (cb) {
 gulp.task('default', ['build']);
 
 gulp.task('package', function (cb) {
-    var cl = ('tfx extension create --manifest-globs .\\vsts-extension.json').trim();
+    var cl = ('tfx extension create --manifest-globs .\\vsts-extension.json --output-path .\\_build').trim();
     console.log('------------------------------------------------------------');
     console.log('> ' + cl);
     console.log('------------------------------------------------------------');

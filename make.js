@@ -104,7 +104,7 @@ target.clean = function () {
 target.build = function() {
     target.clean();
 
-    ensureTool('tsc', '--version', 'Version 2.3.4');
+    ensureTool('tsc', '--version', 'Version 2.6.2');
     ensureTool('npm', '--version', function (output) {
         if (semver.lt(output, '3.0.0')) {
             fail('expected 3.0.0 or higher');
@@ -240,5 +240,22 @@ target.bump = function() {
 
         taskJson.version.Patch = taskJson.version.Patch + 1;
         fs.writeFileSync(taskJsonPath, JSON.stringify(taskJson, null, 4));
+
+        var taskPackageJsonPath = path.join(__dirname, 'Tasks', taskName, 'package.json');
+        var taskPackageJson = JSON.parse(fs.readFileSync(taskPackageJsonPath));
+
+        taskPackageJson.version = semver.inc(taskPackageJson.version, "patch");
+        fs.writeFileSync(taskPackageJsonPath, JSON.stringify(taskPackageJson, null, 4));
     });
+    var taskJsonPath = path.join(__dirname, 'vsts-extension.json');
+    var taskJson = JSON.parse(fs.readFileSync(taskJsonPath));
+
+    taskJson.version = semver.inc(taskJson.version, "patch");
+    fs.writeFileSync(taskJsonPath, JSON.stringify(taskJson, null, 4));
+
+    var taskPackageJsonPath = path.join(__dirname, 'package.json');
+    var taskPackageJson = JSON.parse(fs.readFileSync(taskPackageJsonPath));
+
+    taskPackageJson.version = semver.inc(taskPackageJson.version, "patch");
+    fs.writeFileSync(taskPackageJsonPath, JSON.stringify(taskPackageJson, null, 4));
 }

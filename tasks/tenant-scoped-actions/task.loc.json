@@ -1,6 +1,6 @@
 {
   "id": "9e7e19af-f07d-4ccf-863a-74d2c93fa926",
-  "name": "AddDeploySolutionPackage",
+  "name": "SharePointALMTenantScoped",
   "friendlyName": "ms-resource:loc.friendlyName",
   "description": "ms-resource:loc.description",
   "helpMarkDown": "ms-resource:loc.helpMarkDown",
@@ -9,14 +9,14 @@
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 4
+    "Patch": 76
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
   "inputs": [
     {
       "name": "appCatalogConnection",
-      "type": "connectedService:Generic",
+      "type": "connectedService:sharepoint-online-site",
       "label": "ms-resource:loc.input.label.appCatalogConnection",
       "defaultValue": "",
       "required": true,
@@ -26,15 +26,17 @@
       "helpMarkDown": "ms-resource:loc.input.help.appCatalogConnection"
     },
     {
-      "name": "Action",
+      "name": "action",
       "type": "pickList",
-      "label": "ms-resource:loc.input.label.Action",
+      "label": "ms-resource:loc.input.label.action",
       "required": false,
-      "helpMarkDown": "ms-resource:loc.input.help.Action",
+      "helpMarkDown": "ms-resource:loc.input.help.action",
       "defaultValue": "Add",
       "options": {
         "Add": "Add Solution Package",
-        "Deploy": "Deploy Solution Package"
+        "Deploy": "Deploy Solution Package",
+        "Retract": "Retract Solution Package",
+        "Remove": "Remove Solution Package"
       }
     },
     {
@@ -47,7 +49,7 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.appFilePath",
-      "visibleRule": "Action = Add"
+      "visibleRule": "action = Add"
     },
     {
       "name": "overwriteExisting",
@@ -59,19 +61,19 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.overwriteExisting",
-      "visibleRule": "Action = Add"
+      "visibleRule": "action = Add"
     },
     {
       "name": "packageIdOut",
       "type": "string",
       "label": "ms-resource:loc.input.label.packageIdOut",
       "defaultValue": "AppPackageId",
-      "required": true,
+      "required": false,
       "properties": {
         "EditableOptions": "True"
       },
       "helpMarkDown": "",
-      "visibleRule": "Action = Add"
+      "visibleRule": "action = Add"
     },
     {
       "name": "packageIdIn",
@@ -83,7 +85,7 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.packageIdIn",
-      "visibleRule": "Action = Deploy"
+      "visibleRule": "action != Add"
     },
     {
       "name": "skipFeatureDeployment",
@@ -95,13 +97,13 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.skipFeatureDeployment",
-      "visibleRule": "Action = Deploy"
+      "visibleRule": "action = Deploy"
     }
   ],
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
   "execution": {
     "Node": {
-      "target": "add-solution-package.js",
+      "target": "tenant-scoped-actions.js",
       "argumentFormat": ""
     }
   }

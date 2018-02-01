@@ -1,0 +1,14 @@
+{
+  "loc.friendlyName": "SharePoint ALM: Site Scoped Actions",
+  "loc.helpMarkDown": "",
+  "loc.description": "ALM actions in scope of the SharePoint Site.",
+  "loc.instanceNameFormat": "SharePoint ALM: $(action) Solution Package",
+  "loc.input.label.spSiteConnection": "Connection to the SharePoint Site",
+  "loc.input.help.spSiteConnection": "Select the service connection to the SharePoint Site.",
+  "loc.input.label.overwriteSpSiteUrls": "List of SharePoint site url's",
+  "loc.input.help.overwriteSpSiteUrls": "List of SharePoint sites to execute the action on. Supports one url per line.",
+  "loc.input.label.action": "Action",
+  "loc.input.help.action": "Action to be performed on the Solution Package",
+  "loc.input.label.packageId": "Id of the package in the SharePoint Tenant App Catalog",
+  "loc.input.help.packageId": "Id of the package in the SharePoint Tenant App Catalog."
+}

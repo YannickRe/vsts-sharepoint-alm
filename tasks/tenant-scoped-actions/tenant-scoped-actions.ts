@@ -86,19 +86,14 @@ try
 	main()
 	.then((result) => { tl.setResult(tl.TaskResult.Succeeded, "");})
 	.catch((error) => {
-		appInsights.trackException({ exception: <Error>error });
-
-		appInsights.trackEvent({
-			name: action,
-			properties: {
-				"failed": "true", 
-				"scope": "tenant",
-				"action": action,
-				"authType": appCatalogAuthType,
-				"collection": tl.getVariable("system.collectionId"), 
-				"projectId": tl.getVariable("system.teamProjectId")
-			}
-		});
+		appInsights.trackException({ exception: <Error>error, properties: {
+			"failed": "true", 
+			"scope": "tenant",
+			"action": action,
+			"authType": appCatalogAuthType,
+			"collection": tl.getVariable("system.collectionId"), 
+			"projectId": tl.getVariable("system.teamProjectId")
+		} });
 
 		tl.setResult(tl.TaskResult.Failed, error);
 	});

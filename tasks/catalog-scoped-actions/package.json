@@ -1,8 +1,8 @@
 {
-    "name": "tenant-scoped-actions",
-    "version": "1.0.1",
+    "name": "catalog-scoped-actions",
+    "version": "2.0.2",
     "description": "SharePoint ALM tasks for Visual Studio Team Services",
-    "main": "tenant-scoped-actions.js",
+    "main": "catalog-scoped-actions.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },

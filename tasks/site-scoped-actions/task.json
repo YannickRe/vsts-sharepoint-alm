@@ -7,9 +7,9 @@
     "category": "Deploy",
     "author": "Yannick Reekmans",
     "version": {
-        "Major": 1,
+        "Major": 2,
         "Minor": 0,
-        "Patch": 1
+        "Patch": 2
     },
     "demands": [],
     "minimumAgentVersion": "1.99.0",
@@ -24,6 +24,17 @@
                 "EditableOptions": "True"
             },
             "helpMarkDown": "Select the service connection to the SharePoint Site."
+        },
+        {
+            "name": "useTenantCatalog",
+            "type": "boolean",
+            "label": "Use Tenant App Catalog",
+            "defaultValue": true,
+            "required": true,
+            "properties": {
+                "EditableOptions": "True"
+            },
+            "helpMarkDown": "If checked, use the Tenant App Catalog otherwise use the Site Collection App Catalog"
         },
         {
             "name": "overwriteSpSiteUrls",
@@ -53,13 +64,13 @@
         {
             "name": "packageId",
             "type": "string",
-            "label": "Id of the package in the SharePoint Tenant App Catalog",
+            "label": "Id of the package in the SharePoint App Catalog",
             "defaultValue": "",
             "required": true,
             "properties": {
                 "EditableOptions": "True"
             },
-            "helpMarkDown": "Id of the package in the SharePoint Tenant App Catalog."
+            "helpMarkDown": "Id of the package in the SharePoint App Catalog."
         }
     ],
     "instanceNameFormat": "SharePoint ALM: $(action) Solution Package",

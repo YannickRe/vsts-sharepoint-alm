@@ -7,9 +7,9 @@
   "category": "Deploy",
   "author": "Yannick Reekmans",
   "version": {
-    "Major": 1,
+    "Major": 2,
     "Minor": 0,
-    "Patch": 1
+    "Patch": 2
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
@@ -24,6 +24,17 @@
         "EditableOptions": "True"
       },
       "helpMarkDown": "ms-resource:loc.input.help.spSiteConnection"
+    },
+    {
+      "name": "useTenantCatalog",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.useTenantCatalog",
+      "defaultValue": true,
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.useTenantCatalog"
     },
     {
       "name": "overwriteSpSiteUrls",

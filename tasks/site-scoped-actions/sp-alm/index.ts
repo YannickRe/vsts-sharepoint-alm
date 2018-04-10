@@ -24,35 +24,35 @@ export class spAlm {
         }
     }
 
-    public async add(fileName: string, fileContents: Buffer, overwriteExisting: boolean): Promise<IAddedAppInfo> {
-        return await actions.add(this._spAlmOptions, fileName, fileContents, overwriteExisting);
+    public async add(fileName: string, fileContents: Buffer, overwriteExisting: boolean, useTenantCatalog: boolean): Promise<IAddedAppInfo> {
+        return await actions.add(this._spAlmOptions, fileName, fileContents, overwriteExisting, useTenantCatalog);
     }
 
-    public async deploy(packageId:string, skipFeatureDeployment:boolean): Promise<void> {
-        await actions.deploy(this._spAlmOptions, packageId, skipFeatureDeployment);
+    public async deploy(packageId:string, skipFeatureDeployment:boolean, useTenantCatalog: boolean): Promise<void> {
+        await actions.deploy(this._spAlmOptions, packageId, skipFeatureDeployment, useTenantCatalog);
     }
 
-    public async retract(packageId:string): Promise<void> {
-        await actions.retract(this._spAlmOptions, packageId);
+    public async retract(packageId:string, useTenantCatalog: boolean): Promise<void> {
+        await actions.retract(this._spAlmOptions, packageId, useTenantCatalog);
     }
 
-    public async remove(packageId:string): Promise<void> {
-        await actions.remove(this._spAlmOptions, packageId);
+    public async remove(packageId:string, useTenantCatalog: boolean): Promise<void> {
+        await actions.remove(this._spAlmOptions, packageId, useTenantCatalog);
     }
 
-    public async install(packageId:string, overwriteSpSiteUrls:string[]): Promise<void> {
-        await this.taskWrapper(packageId, overwriteSpSiteUrls, actions.install);
+    public async install(packageId:string, overwriteSpSiteUrls:string[], useTenantCatalog: boolean): Promise<void> {
+        await this.taskWrapper(packageId, overwriteSpSiteUrls, actions.install, useTenantCatalog);
     }
 
-    public async uninstall(packageId:string, overwriteSpSiteUrls:string[]): Promise<void> {
-        await this.taskWrapper(packageId, overwriteSpSiteUrls, actions.uninstall);
+    public async uninstall(packageId:string, overwriteSpSiteUrls:string[], useTenantCatalog: boolean): Promise<void> {
+        await this.taskWrapper(packageId, overwriteSpSiteUrls, actions.uninstall, useTenantCatalog);
     }
 
-    public async upgrade(packageId:string, overwriteSpSiteUrls:string[]): Promise<void> {
-        await this.taskWrapper(packageId, overwriteSpSiteUrls, actions.upgrade);
+    public async upgrade(packageId:string, overwriteSpSiteUrls:string[], useTenantCatalog: boolean): Promise<void> {
+        await this.taskWrapper(packageId, overwriteSpSiteUrls, actions.upgrade, useTenantCatalog);
     }
 
-    private async taskWrapper(packageId:string, overwriteSpSiteUrls:string[], action:(spAlmOptions: ISpAlmOptions, packageId:string) => Promise<void>): Promise<void> {
+    private async taskWrapper(packageId:string, overwriteSpSiteUrls:string[], action:(spAlmOptions: ISpAlmOptions, packageId:string, useTenantCatalog: boolean) => Promise<void>, useTenantCatalog: boolean): Promise<void> {
         if (overwriteSpSiteUrls.length > 0)
         {
             let errors:string[] = [];
@@ -63,7 +63,7 @@ export class spAlm {
                     console.log(`Performing action on ${spSiteUrl}`);
                     let opt = {...this._spAlmOptions};
                     opt.spSiteUrl = spSiteUrl;
-                    await action(opt, packageId);
+                    await action(opt, packageId, useTenantCatalog);
                 } catch(e) {
                     if (e instanceof Error)
                     {
@@ -81,7 +81,7 @@ export class spAlm {
         }
         else
         {
-            await action(this._spAlmOptions, packageId);
+            await action(this._spAlmOptions, packageId, useTenantCatalog);
         }
     }
 }

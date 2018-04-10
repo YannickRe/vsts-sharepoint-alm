@@ -1,6 +1,6 @@
 {
     "tasks": [
-        "tenant-scoped-actions",
+        "catalog-scoped-actions",
         "site-scoped-actions"
     ],
     "taskResources": [

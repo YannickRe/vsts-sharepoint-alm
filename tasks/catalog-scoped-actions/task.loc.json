@@ -7,23 +7,34 @@
   "category": "Deploy",
   "author": "Yannick Reekmans",
   "version": {
-    "Major": 1,
+    "Major": 2,
     "Minor": 0,
-    "Patch": 1
+    "Patch": 2
   },
   "demands": [],
   "minimumAgentVersion": "1.99.0",
   "inputs": [
     {
-      "name": "appCatalogConnection",
+      "name": "spSiteConnection",
       "type": "connectedService:sharepoint-online-site",
-      "label": "ms-resource:loc.input.label.appCatalogConnection",
+      "label": "ms-resource:loc.input.label.spSiteConnection",
       "defaultValue": "",
       "required": true,
       "properties": {
         "EditableOptions": "True"
       },
-      "helpMarkDown": "ms-resource:loc.input.help.appCatalogConnection"
+      "helpMarkDown": "ms-resource:loc.input.help.spSiteConnection"
+    },
+    {
+      "name": "useTenantCatalog",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.useTenantCatalog",
+      "defaultValue": true,
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "ms-resource:loc.input.help.useTenantCatalog"
     },
     {
       "name": "action",
@@ -103,7 +114,7 @@
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
   "execution": {
     "Node": {
-      "target": "tenant-scoped-actions.js",
+      "target": "catalog-scoped-actions.js",
       "argumentFormat": ""
     }
   }

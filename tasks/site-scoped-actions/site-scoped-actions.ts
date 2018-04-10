@@ -13,6 +13,7 @@ async function main(): Promise<void> {
 	let spSiteAuthType: string = tl.getEndpointAuthorizationScheme(spSiteConnection, false);
 	var packageId: string = tl.getInput("packageId", true);
 	var overwriteSpSiteUrls: string[] = tl.getDelimitedInput('overwriteSpSiteUrls', '\n', false);
+	let useTenantCatalog: boolean = tl.getBoolInput("useTenantCatalog", true);
 
 	appInsights.trackEvent({
 		name: action,
@@ -20,14 +21,16 @@ async function main(): Promise<void> {
 			"scope": "site",
 			"action": action,
 			"authType": spSiteAuthType,
+			"useTenantCatalog": useTenantCatalog ? "true" : "false",
 			"collection": tl.getVariable("system.collectionId"), 
 			"projectId": tl.getVariable("system.teamProjectId")
 		}
 	});
 
 	console.log(`Action: ${action}`);
-	console.log(`App Catalog Connection: ${spSiteConnection}`);
-	console.log(`App Catalog Url: ${spSiteUrl}`);
+	console.log(`SharePoint Site Connection: ${spSiteConnection}`);
+	console.log(`SharePoint Site Connection Type: ${spSiteAuthType}`);
+	console.log(`SharePoint Site Url: ${spSiteUrl}`);
 	console.log(`Package Id: ${packageId}`);
 
 	let authOptions = authHelper.getVstsAuthenticationValues(spSiteAuthType, spSiteConnection);
@@ -39,15 +42,15 @@ async function main(): Promise<void> {
 	switch(action)
 	{
 		case "Install": {
-			await almUtil.install(packageId, overwriteSpSiteUrls);
+			await almUtil.install(packageId, overwriteSpSiteUrls, useTenantCatalog);
 			break;
 		}
 		case "Uninstall": {
-			await almUtil.uninstall(packageId, overwriteSpSiteUrls);
+			await almUtil.uninstall(packageId, overwriteSpSiteUrls, useTenantCatalog);
 			break;
 		}
 		case "Upgrade": {
-			await almUtil.upgrade(packageId,overwriteSpSiteUrls);
+			await almUtil.upgrade(packageId,overwriteSpSiteUrls, useTenantCatalog);
 			break;
 		}
 	}

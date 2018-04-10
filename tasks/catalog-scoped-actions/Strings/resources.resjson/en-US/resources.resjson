@@ -1,0 +1,21 @@
+{
+  "loc.friendlyName": "SharePoint ALM: Catalog Scoped Actions",
+  "loc.helpMarkDown": "",
+  "loc.description": "ALM actions in scope of the SharePoint Tenant or Site App Catalog.",
+  "loc.instanceNameFormat": "SharePoint ALM: $(action) Solution Package",
+  "loc.input.label.spSiteConnection": "Connection to the SharePoint Site",
+  "loc.input.help.spSiteConnection": "Select the service connection to the SharePoint Site.",
+  "loc.input.label.useTenantCatalog": "Use Tenant App Catalog",
+  "loc.input.help.useTenantCatalog": "If checked, use the Tenant App Catalog otherwise use the Site Collection App Catalog",
+  "loc.input.label.action": "Action",
+  "loc.input.help.action": "Action to be performed on the Solution Package",
+  "loc.input.label.appFilePath": "Path to the SharePoint solution package",
+  "loc.input.help.appFilePath": "Path to the SharePoint solution package that needs to be added to the SharePoint App Catalog.",
+  "loc.input.label.overwriteExisting": "Overwrite package if exists",
+  "loc.input.help.overwriteExisting": "Whether or not an existing package with the same name will be overwritten.",
+  "loc.input.label.packageIdOut": "PackageId output variable",
+  "loc.input.label.packageIdIn": "Id of the package in the SharePoint App Catalog",
+  "loc.input.help.packageIdIn": "Id of the package in the SharePoint App Catalog.",
+  "loc.input.label.skipFeatureDeployment": "Tenant-wide deployment of the Solution Package",
+  "loc.input.help.skipFeatureDeployment": "Tenant-wide deployment of the Solution Package."
+}

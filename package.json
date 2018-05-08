@@ -1,6 +1,6 @@
 {
     "name": "yr.vsts.sharepointalm",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "SharePoint ALM tasks for Visual Studio Team Services",
     "main": "gulpfile.js",
     "scripts": {
@@ -18,25 +18,25 @@
     "author": "Yannick Reekmans",
     "license": "MIT",
     "devDependencies": {
-        "adm-zip": "0.4.7",
+        "adm-zip": "0.4.9",
         "gulp-util": "3.0.8",
         "minimatch": "3.0.4",
         "minimist": "1.2.0",
-        "mocha": "5.0.0",
+        "mocha": "5.1.1",
         "node-uuid": "1.4.8",
         "q": "1.5.1",
         "semver": "5.5.0",
-        "shelljs": "0.3.0",
-        "sync-request": "4.1.0",
+        "shelljs": "0.8.2",
+        "sync-request": "6.0.0",
         "typescript": "2.6.2",
-        "validator": "^9.2.0"
+        "validator": "10.1.0"
     },
     "dependencies": {
-        "@types/request": "^2.0.13",
-        "applicationinsights": "^1.0.1",
-        "node-sp-auth": "^2.3.2",
-        "request": "^2.83.0",
+        "@types/request": "^2.47.0",
+        "applicationinsights": "^1.0.2",
+        "node-sp-auth": "^2.4.2",
+        "request": "^2.85.0",
         "request-promise-native": "^1.0.5",
-        "vsts-task-lib": "^2.1.0"
+        "vsts-task-lib": "^2.4.0"
     }
 }

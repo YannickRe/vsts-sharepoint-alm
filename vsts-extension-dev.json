@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
-    "id": "sharepoint-alm",
-    "name": "SharePoint ALM",
+    "id": "sharepoint-alm-dev",
+    "name": "SharePoint ALM Dev",
     "version": "2.0.12",
     "publisher": "yannickr",
     "description": "Provides tasks that leverage the SharePoint ALM API's from Visual Studio Team Services build or release definition",
@@ -61,7 +61,7 @@
         }
     ],
     "galleryFlags": [
-        "Public"
+        "Private"
     ],
     "scope": [
         "vso.build",

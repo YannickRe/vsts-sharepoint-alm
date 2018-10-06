@@ -3,8 +3,6 @@ import * as tl from 'vsts-task-lib/task';
 import * as fs from 'fs';
 import { SpAlm, getVstsAuthenticationValues, getTelemetryClient } from '../sp-alm';
 
-tl.setResourcePath(path.join(__dirname, 'task.json'));
-
 async function main(): Promise<void> {
 	let action = tl.getInput('action', true);
 	let spSiteConnection: string = tl.getInput('spSiteConnection', true);

@@ -9,7 +9,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 5
+        "Patch": 12
     },
     "demands": [],
     "minimumAgentVersion": "1.99.0",
@@ -114,7 +114,7 @@
     "instanceNameFormat": "SharePoint ALM: $(action) Solution Package",
     "execution": {
         "Node": {
-            "target": "SharePointALMCatalogScoped/catalog-scoped-actions.js",
+            "target": "catalog-scoped-actions/catalog-scoped-actions.js",
             "argumentFormat": ""
         }
     }

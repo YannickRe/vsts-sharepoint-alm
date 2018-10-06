@@ -1,51 +1,54 @@
 {
-  "name": "yr.vsts.sharepointalm",
-  "version": "2.0.5",
-  "description": "SharePoint ALM tasks for Visual Studio Team Services",
-  "main": "gulpfile.js",
-  "keywords": [
-    "VSTS",
-    "build",
-    "tasks",
-    "sharepoint",
-    "alm",
-    "spfx",
-    "app"
-  ],
-  "repository": {
-    "type": "git",
-    "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
-  },
-  "author": "Yannick Reekmans",
-  "license": "MIT",
-  "scripts": {
-    "initdev": "npm run initdev:npm",
-    "initdev:npm": "npm run initdev:npm:base & npm run initdev:npm:tasks",
-    "initdev:npm:base": "npm install --no-progress --no-update-notifier",
-    "initdev:npm:tasks": "glob-exec --parallel --foreach \"tasks/*/tsconfig.json\" -- \"cd {{file.dir}} && npm install --no-update-notifier --no-progress\"",
-    "compile:tasks": "glob-exec \"tasks/*/tsconfig.json\" -- \"tsc -b {{files.join(' ')}}\"",
-    "postcompile:tasks": "npm run lint:tasks",
-    "lint:tasks": "glob-exec --parallel --foreach \"tasks/*/tsconfig.json\" -- \"tslint -p {{file}}\"",
-    "package:tasks": "tfx extension create --root . --output-path dist --manifest-globs vsts-extension.json",
-    "package:tasksdev": "tfx extension create --root . --output-path dist --manifest-globs vsts-extension-dev.json",
-    "build": "npm run build:tasks",
-    "build:clean": "npm run clean && npm run initdev && npm run build",
-    "build:tasks": "npm run compile:tasks",
-    "package": "npm run build:clean && npm run package:tasks && npm run package:tasksdev",
-    "clean": "git clean -fdX"
-  },
-  "devDependencies": {
-    "@types/core-js": "^2.5.0",
-    "@types/fs-extra": "^5.0.4",
-    "@types/node": "^8.10.25",
-    "@types/promise-retry": "^1.1.1",
-    "@types/temp": "^0.8.29",
-    "@types/x2js": "0.0.27",
-    "@types/xmldom": "^0.1.28",
-    "glob-exec": "^0.1.1",
-    "tfx-cli": "^0.5.14",
-    "tslint": "^5.10.0",
-    "typescript": "^3.0.1",
-    "typestrict": "^1.0.0"
-  }
+    "name": "yr.vsts.sharepointalm",
+    "version": "2.0.12",
+    "description": "SharePoint ALM tasks for Visual Studio Team Services",
+    "main": "gulpfile.js",
+    "keywords": [
+        "VSTS",
+        "build",
+        "tasks",
+        "sharepoint",
+        "alm",
+        "spfx",
+        "app"
+    ],
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
+    },
+    "author": "Yannick Reekmans",
+    "license": "MIT",
+    "scripts": {
+        "initdev": "npm run initdev:npm",
+        "initdev:npm": "npm run initdev:npm:base & npm run initdev:npm:tasks",
+        "initdev:npm:base": "npm install --no-progress --no-update-notifier",
+        "initdev:npm:tasks": "glob-exec --parallel --foreach \"tasks/*/tsconfig.json\" -- \"cd {{file.dir}} && npm install --no-update-notifier --no-progress\"",
+        "compile:tasks": "glob-exec \"tasks/*/tsconfig.json\" -- \"tsc -b {{files.join(' ')}}\"",
+        "postcompile:tasks": "npm run lint:tasks",
+        "lint:tasks": "glob-exec --parallel --foreach \"tasks/*/tsconfig.json\" -- \"tslint -p {{file}}\"",
+        "package:tasks": "tfx extension create --root . --output-path dist --manifest-globs vsts-extension.json",
+        "package:tasksdev": "tfx extension create --root . --output-path dist --manifest-globs vsts-extension-dev.json",
+        "build": "npm run build:tasks",
+        "build:clean": "npm run clean && npm run initdev && npm run build",
+        "build:tasks": "npm run compile:tasks",
+        "package": "npm run build:clean && npm run package:tasks && npm run package:tasksdev",
+        "clean": "git clean -fdX",
+        "bump": "node bumpTaskVersion.js"
+    },
+    "devDependencies": {
+        "@types/core-js": "^2.5.0",
+        "@types/fs-extra": "^5.0.4",
+        "@types/node": "^8.10.25",
+        "@types/promise-retry": "^1.1.1",
+        "@types/temp": "^0.8.29",
+        "@types/x2js": "0.0.27",
+        "@types/xmldom": "^0.1.28",
+        "glob-exec": "^0.1.1",
+        "semver": "^5.5.1",
+        "tfx-cli": "^0.5.14",
+        "tslint": "^5.10.0",
+        "typescript": "^3.0.1",
+        "typestrict": "^1.0.0"
+    },
+    "dependencies": {}
 }

@@ -11,7 +11,6 @@ export async function add(spAlmOptions: ISpAlmOptions, fileName: string, fileCon
     if (!fileContents) {
         throw new Error("fileContents argument is required");
     }
-
     let authResponse = await getAuth(spAlmOptions);
     authResponse["binaryStringRequestBody"] = true;
     let apiUrl = `${spAlmOptions.spSiteUrl}/_api/web/${useTenantCatalog ? 'tenantappcatalog' : 'sitecollectionappcatalog'}/Add(overwrite=${overwriteExisting}, url='${fileName}')`;

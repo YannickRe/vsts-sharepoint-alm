@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "sharepoint-alm",
     "name": "SharePoint ALM",
-    "version": "2.0.5",
+    "version": "2.0.12",
     "publisher": "yannickr",
     "description": "Provides tasks that leverage the SharePoint ALM API's from Visual Studio Team Services build or release definition",
     "categories": [
@@ -69,7 +69,7 @@
     ],
     "contributions": [
         {
-            "id": "catalog-scoped-actions",
+            "id": "tenant-scoped-actions",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -79,7 +79,7 @@
             }
         },
         {
-            "id": "site-scoped-actions",
+            "id": "sharepoint-scoped-actions",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"

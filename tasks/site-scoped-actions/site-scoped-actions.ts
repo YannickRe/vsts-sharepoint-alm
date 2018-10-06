@@ -1,8 +1,5 @@
-import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
 import { SpAlm, getVstsAuthenticationValues, getTelemetryClient } from '../sp-alm';
-
-tl.setResourcePath(path.join(__dirname, 'task.json'));
 
 async function main(): Promise<void> {
 	var action = tl.getInput('action', true);

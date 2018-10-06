@@ -1,7 +1,6 @@
 {
-    "name": "catalog-scoped-actions",
-    "description": "SharePoint ALM tasks for Visual Studio Team Services",
-    "version": "2.0.12",
+    "name": "sp-alm",
+    "description": "SharePoint ALM common library",
     "repository": {
         "type": "git",
         "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"

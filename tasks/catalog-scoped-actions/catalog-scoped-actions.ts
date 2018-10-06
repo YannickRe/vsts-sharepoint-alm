@@ -1,11 +1,7 @@
-import appInsights from './sp-alm/utils/appInsightsHelper';
 import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
 import * as fs from 'fs';
-import { spAlm } from './sp-alm';
-import * as authHelper from "./sp-alm/utils/authHelper";
-
-tl.setResourcePath(path.join(__dirname, 'task.json'));
+import { SpAlm, getVstsAuthenticationValues, getTelemetryClient } from '../sp-alm';
 
 async function main(): Promise<void> {
 	let action = tl.getInput('action', true);
@@ -18,6 +14,7 @@ async function main(): Promise<void> {
 	let skipFeatureDeployment: boolean = (action === "Deploy") ? tl.getBoolInput("skipFeatureDeployment", true) : true;
 	let packageIdIn: string = (action !== "Add") ? tl.getInput("packageIdIn", true) : "";
 	let useTenantCatalog: boolean = tl.getBoolInput("useTenantCatalog", true);
+	let appInsights = getTelemetryClient();
 
 	appInsights.trackEvent({
 		name: action,
@@ -36,8 +33,8 @@ async function main(): Promise<void> {
 	console.log(`SharePoint Site Connection Type: ${spSiteAuthType}`);
 	console.log(`SharePoint Site Url: ${spSiteUrl}`);
 
-	let authOptions = authHelper.getVstsAuthenticationValues(spSiteAuthType, spSiteConnection);
-	let almUtil = new spAlm({
+	let authOptions = getVstsAuthenticationValues(spSiteAuthType, spSiteConnection);
+	let almUtil = new SpAlm({
 		spSiteUrl: spSiteUrl,
 		spAuthOptions: authOptions
 	});
@@ -78,7 +75,7 @@ async function main(): Promise<void> {
 	}
 	console.log("Action completed");
 }
-
+let appInsights = getTelemetryClient();
 try
 {
 	var action = tl.getInput('action', true);

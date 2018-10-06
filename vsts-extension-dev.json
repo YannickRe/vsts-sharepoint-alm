@@ -1,0 +1,164 @@
+{
+    "manifestVersion": 1,
+    "id": "sharepoint-alm-dev",
+    "name": "SharePoint ALM",
+    "version": "2.0.5",
+    "publisher": "yannickr",
+    "description": "Provides tasks that leverage the SharePoint ALM API's from Visual Studio Team Services build or release definition",
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "deploy",
+        "release",
+        "sharepoint",
+        "alm",
+        "tenant",
+        "app",
+        "spfx"
+    ],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "images/icon.png"
+    },
+    "visibility": [
+        "Build and release"
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
+        },
+        "support": {
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"
+        },
+        "issues": {
+            "uri": "https://github.com/YannickRe/vsts-sharepoint-alm/issues"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
+    },
+    "files": [
+        {
+            "path": "tasks/catalog-scoped-actions"
+        },
+        {
+            "path": "tasks/site-scoped-actions"
+        },
+        {
+            "path": "images",
+            "addressable": true
+        }
+    ],
+    "galleryFlags": [
+        "Public"
+    ],
+    "scope": [
+        "vso.build",
+        "vso.serviceendpoint"
+    ],
+    "contributions": [
+        {
+            "id": "catalog-scoped-actions",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/catalog-scoped-actions"
+            }
+        },
+        {
+            "id": "site-scoped-actions",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/site-scoped-actions"
+            }
+        },
+        {
+            "id": "sharepoint-online-site-service-endpoint",
+            "description": "SharePointOnlineSiteAuthenticationEndpoint",
+            "type": "ms.vss-endpoint.service-endpoint-type",
+            "targets": [
+                "ms.vss-endpoint.endpoint-types"
+            ],
+            "properties": {
+                "name": "sharepoint-online-site",
+                "displayName": "SharePoint Online Site",
+                "url": {
+                    "displayName": "SharePoint Online Site Url",
+                    "helpText": "Url for the SharePoint Online Site to connect to."
+                },
+                "authenticationSchemes": [
+                    {
+                        "type": "ms.vss-endpoint.endpoint-auth-scheme-token",
+                        "inputDescriptors": [
+                            {
+                                "id": "clientid",
+                                "name": "Client Id",
+                                "description": "Client Id",
+                                "inputMode": "textbox",
+                                "isConfidential": false,
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string"
+                                }
+                            },
+                            {
+                                "id": "apitoken",
+                                "name": "Client Secret",
+                                "description": "Client Secret.",
+                                "inputMode": "passwordbox",
+                                "isConfidential": true,
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ms.vss-endpoint.endpoint-auth-scheme-basic",
+                        "inputDescriptors": [
+                            {
+                                "id": "username",
+                                "name": "Username",
+                                "description": "Username",
+                                "inputMode": "textbox",
+                                "isConfidential": false,
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string"
+                                }
+                            },
+                            {
+                                "id": "password",
+                                "name": "Password",
+                                "description": "Password",
+                                "inputMode": "passwordbox",
+                                "isConfidential": true,
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

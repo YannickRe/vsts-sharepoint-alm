@@ -27,10 +27,11 @@
     "postcompile:tasks": "npm run lint:tasks",
     "lint:tasks": "glob-exec --parallel --foreach \"tasks/*/tsconfig.json\" -- \"tslint -p {{file}}\"",
     "package:tasks": "tfx extension create --root . --output-path dist --manifest-globs vsts-extension.json",
+    "package:tasksdev": "tfx extension create --root . --output-path dist --manifest-globs vsts-extension-dev.json",
     "build": "npm run build:tasks",
     "build:clean": "npm run clean && npm run initdev && npm run build",
     "build:tasks": "npm run compile:tasks",
-    "package": "npm run build:clean && npm run package:tasks",
+    "package": "npm run build:clean && npm run package:tasks && npm run package:tasksdev",
     "clean": "git clean -fdX"
   },
   "devDependencies": {

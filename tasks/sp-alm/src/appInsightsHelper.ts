@@ -1,5 +1,5 @@
 import * as appInsights from 'applicationinsights';
-const packageJSON = require('../../package.json');
+const packageJSON = require('../../task.json');
 
 appInsights.setup("0b7f9cdf-a2c4-4d1a-8c18-a3d514725c19")
     .setAutoDependencyCorrelation(false)
@@ -13,7 +13,7 @@ appInsights.setup("0b7f9cdf-a2c4-4d1a-8c18-a3d514725c19")
     .start();
 
 appInsights.defaultClient.commonProperties = {
-  version: packageJSON.version,
+  version: `${packageJSON.version.Major}.${packageJSON.version.Minor}.${packageJSON.version.Patch}`,
   name: packageJSON.name
 };
 

@@ -1,0 +1,20 @@
+{
+    "name": "sp-alm",
+    "description": "SharePoint ALM common library",
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/YannickRe/vsts-sharepoint-alm"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@types/request": "^2.47.1",
+        "@types/request-promise-native": "^1.0.15"
+    },
+    "dependencies": {
+        "applicationinsights": "^1.0.5",
+        "node-sp-auth": "^2.5.6",
+        "request": "^2.88.0",
+        "request-promise-native": "^1.0.5",
+        "vsts-task-lib": "^2.7.0"
+    }
+}

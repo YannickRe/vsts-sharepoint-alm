@@ -1,8 +1,6 @@
-import appInsights from './sp-alm/utils/appInsightsHelper';
 import * as path from 'path';
 import * as tl from 'vsts-task-lib/task';
-import { spAlm } from './sp-alm';
-import * as authHelper from "./sp-alm/utils/authHelper";
+import { SpAlm, getVstsAuthenticationValues, getTelemetryClient } from '../sp-alm';
 
 tl.setResourcePath(path.join(__dirname, 'task.json'));
 
@@ -14,6 +12,7 @@ async function main(): Promise<void> {
 	var packageId: string = tl.getInput("packageId", true);
 	var overwriteSpSiteUrls: string[] = tl.getDelimitedInput('overwriteSpSiteUrls', '\n', false);
 	let useTenantCatalog: boolean = tl.getBoolInput("useTenantCatalog", true);
+	let appInsights = getTelemetryClient();
 
 	appInsights.trackEvent({
 		name: action,
@@ -33,8 +32,8 @@ async function main(): Promise<void> {
 	console.log(`SharePoint Site Url: ${spSiteUrl}`);
 	console.log(`Package Id: ${packageId}`);
 
-	let authOptions = authHelper.getVstsAuthenticationValues(spSiteAuthType, spSiteConnection);
-	let almUtil = new spAlm({
+	let authOptions = getVstsAuthenticationValues(spSiteAuthType, spSiteConnection);
+	let almUtil = new SpAlm({
 		spSiteUrl: spSiteUrl,
 		spAuthOptions: authOptions
 	});
@@ -56,6 +55,8 @@ async function main(): Promise<void> {
 	}
 	console.log("Action completed");
 }
+
+let appInsights = getTelemetryClient();
 try
 {
 	var action = tl.getInput('action', true);

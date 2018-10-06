@@ -1,6 +1,6 @@
 {
     "id": "9e7e19af-f07d-4ccf-863a-74d2c93fa926",
-    "name": "SharePointALMTenantScoped",
+    "name": "SharePointALMCatalogScoped",
     "friendlyName": "SharePoint ALM: Catalog Scoped Actions",
     "description": "ALM actions in scope of the SharePoint Tenant or Site App Catalog.",
     "helpMarkDown": "",
@@ -114,7 +114,7 @@
     "instanceNameFormat": "SharePoint ALM: $(action) Solution Package",
     "execution": {
         "Node": {
-            "target": "catalog-scoped-actions.js",
+            "target": "SharePointALMCatalogScoped/catalog-scoped-actions.js",
             "argumentFormat": ""
         }
     }

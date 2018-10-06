@@ -23,7 +23,7 @@
         }
     ],
     "icons": {
-        "default": "icon.png"
+        "default": "images/icon.png"
     },
     "visibility": [
         "Build and release"
@@ -50,10 +50,10 @@
     },
     "files": [
         {
-            "path": "_build/Tasks/SharePointALMTenantScoped"
+            "path": "tasks/catalog-scoped-actions"
         },
         {
-            "path": "_build/Tasks/SharePointALMSiteScoped"
+            "path": "tasks/site-scoped-actions"
         },
         {
             "path": "images",
@@ -69,23 +69,23 @@
     ],
     "contributions": [
         {
-            "id": "tenant-scoped-actions",
+            "id": "catalog-scoped-actions",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "_build/Tasks/SharePointALMTenantScoped"
+                "name": "tasks/catalog-scoped-actions"
             }
         },
         {
-            "id": "sharepoint-scoped-actions",
+            "id": "site-scoped-actions",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "_build/Tasks/SharePointALMSiteScoped"
+                "name": "tasks/site-scoped-actions"
             }
         },
         {

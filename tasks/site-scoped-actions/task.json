@@ -76,7 +76,7 @@
     "instanceNameFormat": "SharePoint ALM: $(action) Solution Package",
     "execution": {
         "Node": {
-            "target": "site-scoped-actions.js",
+            "target": "SharePointALMSiteScoped/site-scoped-actions.js",
             "argumentFormat": ""
         }
     }

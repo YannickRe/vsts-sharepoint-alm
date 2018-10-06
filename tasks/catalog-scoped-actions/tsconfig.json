@@ -1,9 +1,10 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "target": "ES6",
-        "module": "commonjs"
+        "outDir": "./", 
+        "sourceRoot": "./"
     },
-    "exclude": [
-        "node_modules"
+    "files": [
+        "catalog-scoped-actions.ts"
     ]
 }
